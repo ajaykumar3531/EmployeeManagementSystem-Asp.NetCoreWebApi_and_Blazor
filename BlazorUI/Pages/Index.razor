@@ -1,0 +1,156 @@
+﻿@page "/"
+
+<style>
+    /* Custom styles */
+    body {
+        background-color: #f0f0f0;
+    }
+
+    .intro-container {
+        margin: 50px auto;
+        max-width: 800px;
+        text-align: center;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-top: 30px;
+    }
+
+    .card {
+        width: 300px;
+        margin: 15px;
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .modal-content {
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Color palette */
+    :root {
+        --primary-color: #3498db;
+        --secondary-color: #2ecc71;
+        --accent-color: #f39c12;
+        --background-color: #ecf0f1;
+        --text-color: #34495e;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--primary-color);
+    }
+
+    .btn-primary {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+    .modal-header {
+        background-color: var(--primary-color);
+        color: #fff;
+    }
+</style>
+
+<PageTitle>Employee Management System</PageTitle>
+
+<div class="container intro-container">
+    <h1 class="display-4">Welcome to the Professional Employee Management System</h1>
+    <p class="lead">
+        Streamline your enhance organizational efficiency with our sophisticated Employee Management System.
+    </p>
+</div>
+
+<div class="container card-container">
+    <!-- Employee Card -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Employee Management</h5>
+            <p class="card-text">
+                Manage employee data efficiently. Add, update, and delete employee records with ease.
+            </p>
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#employeeModal">Learn More</a>
+        </div>
+    </div>
+
+    <!-- Department Card -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Department Management</h5>
+            <p class="card-text">
+                Organize employees by departments for better categorization and streamlined management.
+            </p>
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#departmentModal">Learn More</a>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="employeeModal" tabindex="-1" role="dialog" aria-labelledby="employeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="employeeModalLabel">Employee Management</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Our Employee Management module provides a user-friendly interface to add, update, and delete employee records.
+                    With a secure and scalable architecture, you can manage your workforce data effortlessly.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="departmentModal" tabindex="-1" role="dialog" aria-labelledby="departmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="departmentModalLabel">Department Management</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Efficiently organize your workforce by departments. Our system allows you to categorize employees
+                    and manage departmental information for better organization and collaboration.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,248 @@
+﻿<!-- RegistrationComponent.razor -->
+@page "/signup"
+@inherits EmployeeAddBase
+@using EMS.Models.DTOS
+<head>
+    <link rel="stylesheet" href="css/Style.css" />
+</head>
+
+<EditForm Model="@registrationDto" OnValidSubmit="RegisterEmployee">
+    <DataAnnotationsValidator />
+    <div class="registration-form">
+        <h3 class="mt-4 mb-4">Employee SignUp</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="FirstName" class="form-label">First Name:</label>
+                    <input id="FirstName" class="form-control" @bind-value="registrationDto.FirstName"  />
+                    @if (string.IsNullOrWhiteSpace(registrationDto.FirstName))
+                    {
+                        <div class="d-flex align-items-center">
+                            <span class="fw-bold" style="font-size: 0.9rem;"><ValidationMessage For="@(() => registrationDto.FirstName)" /></span>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="LastName" class="form-label">Last Name:</label>
+                    <input id="LastName" class="form-control" @bind="registrationDto.LastName" />
+                    @if (string.IsNullOrWhiteSpace(registrationDto.LastName))
+                    {
+                        <div class="d-flex align-items-center">
+                            <span class="fw-bold" style="font-size: 0.9rem;"><ValidationMessage For="@(() => registrationDto.LastName)" /></span>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="DateOfBirth" class="form-label">Date of Birth:</label>
+                    <input id="DateOfBirth" type="date" class="form-control" @bind="registrationDto.DateOfBirth" />
+                    @if (string.IsNullOrWhiteSpace(registrationDto.DateOfBirth.ToString()))
+                    {
+
+
+                        <div class="d-flex align-items-center">
+                            <span class="fw-bold" style="font-size: 0.9rem;"><ValidationMessage For="@(() => registrationDto.DateOfBirth)" /></span>
+                    </div>}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="Gender" class="form-label">Gender:</label>
+                    <select id="Gender" class="form-select" @bind="registrationDto.Gender">
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                @if (string.IsNullOrWhiteSpace(registrationDto.Gender))
+                {
+
+
+                    <div class="d-flex align-items-center">
+                        <span class="fw-bold" style="font-size: 0.9rem;"><ValidationMessage For="@(() => registrationDto.Gender)" /></span>
+                </div>}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Hobbies" class="form-label">Hobbies:</label>
+            <input id="Hobbies" class="form-control" @bind="registrationDto.Hobbies" />
+            @if (string.IsNullOrWhiteSpace(registrationDto.Hobbies))
+            {
+
+
+                <div class="d-flex align-items-center">
+                    <span class="fw-bold" style="font-size: 0.9rem;"><ValidationMessage For="@(() => registrationDto.Hobbies)" /></span>
+            </div>}
+        </div>
+
+
+        <div class="form-group">
+            <label for="PhoneNumber" class="form-label">Mobile Number:</label>
+            <input id="PhoneNumber" class="form-control" @bind="registrationDto.PhoneNumber" />
+            @if (string.IsNullOrWhiteSpace(registrationDto.PhoneNumber))
+            {
+
+
+                <div class="d-flex align-items-center">
+                    <span class="fw-bold" style="font-size: 0.9rem;"><ValidationMessage For="@(() => registrationDto.PhoneNumber)" /></span>
+                </div>}
+           
+
+        </div>
+
+
+        <div class="form-group">
+            <label for="Email" class="form-label">Email:</label>
+            <input id="Email" type="email" class="form-control" @bind="registrationDto.Email" />
+            @if (string.IsNullOrWhiteSpace(registrationDto.Email))
+            {
+
+
+                <div class="d-flex align-items-center">
+                    <span class="fw-bold" style="font-size: 0.9rem;"><ValidationMessage For="@(() => registrationDto.Email)" /></span>
+            </div>}
+        </div>
+
+        <div class="form-group">
+            <label for="Password" class="form-label">Password:</label>
+            <input id="Password" type="password" class="form-control" @bind="registrationDto.PasswordHash" />
+            @if (string.IsNullOrWhiteSpace(registrationDto.PasswordHash))
+            {
+
+
+                <div class="d-flex align-items-center">
+                    <span class="fw-bold" style="font-size: 0.9rem;"><ValidationMessage For="@(() => registrationDto.PasswordHash)" /></span>
+            </div>}
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="HireDate" class="form-label">Hire Date:</label>
+                    <input id="HireDate" type="date" class="form-control" @bind="registrationDto.HireDate" />
+                    @if (string.IsNullOrWhiteSpace(registrationDto.HireDate.ToString()))
+                    {
+
+
+                        <div class="d-flex align-items-center">
+                            <span class="fw-bold" style="font-size: 0.9rem;"><ValidationMessage For="@(() => registrationDto.HireDate)" /></span>
+                    </div>}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="JobTitle" class="form-label">Job Title:</label>
+                    <input id="JobTitle" class="form-control" @bind="registrationDto.JobTitle" />
+                    @if (string.IsNullOrWhiteSpace(registrationDto.JobTitle))
+                    {
+
+
+                        <div class="d-flex align-items-center">
+                            <span class="fw-bold" style="font-size: 0.9rem;"><ValidationMessage For="@(() => registrationDto.JobTitle)" /></span>
+                    </div>}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="DepartmentId" class="form-label">Department ID:</label>
+                <input id="DepartmentId" class="form-control" @bind="registrationDto.DepartmentId" />
+                @if (string.IsNullOrWhiteSpace(registrationDto.DepartmentId.ToString()))
+                {
+
+
+                    <div class="d-flex align-items-center">
+                        <span class="fw-bold" style="font-size: 0.9rem;"><ValidationMessage For="@(() => registrationDto.DepartmentId)" /></span>
+                </div>}
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="Address" class="form-label">Address:</label>
+            <textarea id="Address" class="form-control" @bind="registrationDto.Address"></textarea>
+            @if (string.IsNullOrWhiteSpace(registrationDto.Address))
+            {
+
+
+                <div class="d-flex align-items-center">
+                    <span class="fw-bold" style="font-size: 0.9rem;"><ValidationMessage For="@(() => registrationDto.Address)" /></span>
+            </div>}
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="Country" class="form-label">Country:</label>
+                    <select id="Country" class="form-select" @bind="registrationDto.Country">
+                        <option value="">Select Country</option>
+                        <option value="India">India</option>
+                        <option value="United States">United States</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Germany">Germany</option>
+                        <option value="France">France</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="South Africa">South Africa</option>
+                        <!-- Add more countries as needed -->
+                    </select>
+                    @if (string.IsNullOrWhiteSpace(registrationDto.Country))
+                    {
+                        <div class="d-flex align-items-center">
+                            <span class="fw-bold" style="font-size: 0.9rem;"><ValidationMessage For="@(() => registrationDto.Country)" /></span>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="City" class="form-label">City:</label>
+                    <select id="City" class="form-select" @bind="registrationDto.City">
+                        <option value="">Select City</option>
+                        <option value="Hyderabad">Hyderabad</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Bangalore">Bangalore</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Kolkata">Kolkata</option>
+                        <option value="Pune">Pune</option>
+                        <option value="Ahmedabad">Ahmedabad</option>
+                        <option value="Jaipur">Jaipur</option>
+                        <option value="Lucknow">Lucknow</option>
+                        <!-- Add more cities as needed -->
+                    </select>
+                    @if (string.IsNullOrWhiteSpace(registrationDto.City))
+                    {
+                        <div class="d-flex align-items-center">
+                            <span class="fw-bold" style="font-size: 0.9rem;"><ValidationMessage For="@(() => registrationDto.City)" /></span>
+                        </div>
+                    }
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="d-flex flex-column align-items-center mt-3">
+            <div class="d-flex flex-column flex-md-row align-items-center">
+                <button  class="btn btn-primary mb-2" type="submit">Sign Up</button>
+               
+            </div>
+        </div>
+    </div>
+</EditForm>
+

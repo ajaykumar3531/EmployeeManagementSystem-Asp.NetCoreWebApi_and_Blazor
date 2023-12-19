@@ -1,0 +1,54 @@
+﻿@page "/department/update/{DepartmentId:int}"
+@inherits UpdateDepartmentBase
+<head>
+    <link rel="stylesheet" href="css/Style2.css" />
+</head>
+
+<h3>Update Department</h3>
+
+<EditForm Model="@addDepartment" OnValidSubmit=" UpdateDepartment" class="edit-form">
+    <DataAnnotationsValidator />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="DepartmentName" class="form-label">Department Name:</label>
+                <input id="DepartmentName" class="form-control" @bind-value="addDepartment.DepartmentName" />
+                @if (string.IsNullOrWhiteSpace(addDepartment.DepartmentName))
+                {
+                    <div class="d-flex align-items-center">
+                        <span class="fw-bold" style="font-size: 0.9rem;"><ValidationMessage For="@(() => addDepartment.DepartmentName)" /></span>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="Location" class="form-label">Location:</label>
+                <input id="Location" class="form-control" @bind-value="addDepartment.Location" />
+                @if (string.IsNullOrWhiteSpace(addDepartment.Location))
+                {
+                    <div class="d-flex align-items-center">
+                        <span class="fw-bold" style="font-size: 0.9rem;"><ValidationMessage For="@(() => addDepartment.Location)" /></span>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="Manager" class="form-label">Manager:</label>
+        <input id="Manager" class="form-control" @bind-value="addDepartment.Manager" />
+        @if (string.IsNullOrWhiteSpace(addDepartment.Manager))
+        {
+            <div class="d-flex align-items-center">
+                <span class="fw-bold" style="font-size: 0.9rem;"><ValidationMessage For="@(() => addDepartment.Manager)" /></span>
+            </div>
+        }
+    </div>
+
+    <div class="d-flex flex-column align-items-center mt-3">
+        <div class="d-flex flex-column flex-md-row align-items-center">
+            <button class="btn btn-primary mb-2" type="submit">Update Department</button>
+        </div>
+    </div>
+</EditForm>

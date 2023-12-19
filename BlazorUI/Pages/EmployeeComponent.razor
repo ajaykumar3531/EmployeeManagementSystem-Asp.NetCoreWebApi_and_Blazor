@@ -1,0 +1,71 @@
+﻿@page "/employee"
+@inherits EmployeeComponentBase
+
+<h3 class="text-center">Employee Data</h3>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-success mt-3" style="margin-bottom:5px" @onclick="GoToSignUp">Add Employee</button>
+            <table class="table table-bordered table-hover">
+                <thead class="dark">
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Dept ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>DOB</th>
+                        <th>Gender</th>
+                        <th>Email</th>
+                        <th>Hire Date</th>
+                        <th>Job Title</th>
+                        <th>City</th>
+         
+                        <th>Delete</th>
+                        <th>Update</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var employee in Employees)
+                    {
+                        <tr>
+                            <td>@employee.EmployeeId</td>
+                            <td>@employee.DepartmentId</td>
+                            <td>@employee.FirstName</td>
+                            <td>@employee.LastName</td>
+                            <td>@employee.DateOfBirth?.ToShortDateString()</td>
+                            <td>@employee.Gender</td>
+                            <td>@employee.Email</td>
+                            <td>@employee.HireDate?.ToShortDateString()</td>
+                            <td>@employee.JobTitle</td>
+                          
+                            <td>@employee.City</td>
+                         
+                            <td>
+                                <button class="btn btn-danger" @onclick="() => Delete_Click(employee.EmployeeId)">Delete</button>
+                                
+                            </td>
+                            <td>
+                                <button class="btn btn-primary" @onclick="() => Update_Click(employee.EmployeeId)">Update</button>
+                            </td>
+                            <Confirm @ref="DeleteConfirmation" ConfirmationChanged="ConfirmDelete_Click"
+                                     ConfirmationMessage=@($"Are you sure you want to delete \"{employee.EmployeeId}\"")>
+                            </Confirm>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@code {
+    private void Update_Click(int employeeId)
+    {
+        NavigationManager.NavigateTo($"/employee/update/{employeeId}");
+    }
+    private void GoToSignUp()
+    {
+        NavigationManager.NavigateTo("/signup");
+    }
+}
